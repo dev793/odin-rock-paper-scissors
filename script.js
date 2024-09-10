@@ -1,5 +1,3 @@
-console.log("Hello World");
-
 function getComputerChoice() {
     let randomValue = Math.floor(Math.random() * 3); 
     switch (randomValue) {
@@ -50,7 +48,14 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
+function playGame() {
+    for (let i = 0; i < 5; i++) {
+        playRound(getHumanChoice(), getComputerChoice());
+    }
+    console.log(`Final result: Player: ${humanScore}, Computer: ${computerScore}`);
+}
+
 let humanScore = 0;
 let computerScore = 0;
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame();
