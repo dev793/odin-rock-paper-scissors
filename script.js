@@ -15,10 +15,42 @@ function getComputerChoice() {
 function getHumanChoice() {
     let humanChoice = "";
     while (humanChoice != "rock" && humanChoice != "paper" && humanChoice != 'scissors') {
-        humanChoice = prompt("Please choose 'rock', 'paper', or 'scissors':");
+        humanChoice = prompt("Please choose 'rock', 'paper', or 'scissors':").toLowerCase();
     }
     return humanChoice;
 }
 
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == computerChoice) {
+        console.log(`Draw! Both picked ${humanChoice}`);
+    } else if (humanChoice == "paper") {
+        if (computerChoice == "rock") {
+            console.log("You win! Paper beats Rock");
+            humanScore++;
+        } else {
+            console.log("You lose! Scissors beats Paper");
+            computerScore++;
+        }
+    } else if (humanChoice == "scissors") {
+        if (computerChoice == "paper") {
+            console.log("You win! Scissors beats Paper");
+            humanScore++;
+        } else {
+            console.log("You lose! Rock beats Scissors");
+            computerScore++;
+        }
+    } else if (humanChoice == "rock") {
+        if (computerChoice == "scissors") {
+            console.log("You win! Rock beats Scissors");
+            humanScore++;
+        } else {
+            console.log("You lose! Paper beats Rock");
+            computerScore++;
+        }
+    }
+}
+
 let humanScore = 0;
 let computerScore = 0;
+
+playRound(getHumanChoice(), getComputerChoice());
