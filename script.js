@@ -10,48 +10,44 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let humanChoice = "";
-    while (humanChoice != "rock" && humanChoice != "paper" && humanChoice != 'scissors') {
-        humanChoice = prompt("Please choose 'rock', 'paper', or 'scissors':").toLowerCase();
-    }
-    return humanChoice;
-}
-
 function playRound(humanChoice, computerChoice) {
+    let message = '';
+
     if (humanChoice == computerChoice) {
-        console.log(`Draw! Both picked ${humanChoice}`);
+        message = `Draw! Both picked ${humanChoice}`;
     } else if (humanChoice == "paper") {
         if (computerChoice == "rock") {
-            console.log("You win! Paper beats Rock");
+            message = "You win! Paper beats Rock";
             humanScore++;
         } else {
-            console.log("You lose! Scissors beats Paper");
+            message = "You lose! Scissors beats Paper";
             computerScore++;
         }
     } else if (humanChoice == "scissors") {
         if (computerChoice == "paper") {
-            console.log("You win! Scissors beats Paper");
+            message = "You win! Scissors beats Paper";
             humanScore++;
         } else {
-            console.log("You lose! Rock beats Scissors");
+            message = "You lose! Rock beats Scissors";
             computerScore++;
         }
     } else if (humanChoice == "rock") {
         if (computerChoice == "scissors") {
-            console.log("You win! Rock beats Scissors");
+            message = "You win! Rock beats Scissors";
             humanScore++;
         } else {
-            console.log("You lose! Paper beats Rock");
+            message = "You lose! Paper beats Rock";
             computerScore++;
         }
     }
+    results.textContent = message;
 }
 
 let humanScore = 0;
 let computerScore = 0;
 
 let buttons = document.querySelector("#buttons");
+let results = document.querySelector("#results");
 
 buttons.addEventListener("click", (event) => {
     let target = event.target;
@@ -73,16 +69,12 @@ buttons.addEventListener("click", (event) => {
 
 });
 
-
-
 // function playGame() {
 //     for (let i = 0; i < 5; i++) {
 //         playRound(getHumanChoice(), getComputerChoice());
 //     }
 //     console.log(`Final result: Player: ${humanScore}, Computer: ${computerScore}`);
 // }
-
-
 
 // playGame();
 
