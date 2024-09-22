@@ -48,14 +48,42 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame() {
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
-    console.log(`Final result: Player: ${humanScore}, Computer: ${computerScore}`);
-}
-
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
+let buttons = document.querySelector("#buttons");
+
+buttons.addEventListener("click", (event) => {
+    let target = event.target;
+    let humanChoice = "";
+
+    switch(target.id) {
+        case "rock":
+            humanChoice = "rock";
+            break;
+        case "paper":
+            humanChoice = "paper";
+            break;
+        case "scissors":
+            humanChoice = "scissors";
+            break;
+    }
+
+    playRound(humanChoice, getComputerChoice());
+
+});
+
+
+
+// function playGame() {
+//     for (let i = 0; i < 5; i++) {
+//         playRound(getHumanChoice(), getComputerChoice());
+//     }
+//     console.log(`Final result: Player: ${humanScore}, Computer: ${computerScore}`);
+// }
+
+
+
+// playGame();
+
+//playRound(getHumanChoice(), getComputerChoice());
