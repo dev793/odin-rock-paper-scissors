@@ -10,7 +10,10 @@ function getHumanChoice() {
     return humanChoice = prompt("Make your choice (rock, paper, scissors):").toLowerCase();
 }
 
-function playRound(humanChoice, computerChoice) {
+function playRound(event) {
+
+    const humanChoice = event.target.textContent;
+    const computerChoice = getComputerChoice();
 
     console.log("Player choice: " + humanChoice);
     console.log("Computer choice: " + computerChoice);
@@ -38,20 +41,33 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-function playGame() {
+const buttonnContainer = document.querySelector("#buttons");
 
-    for (let i = 0; i < 5; i++ ) {
-        playRound(getHumanChoice(), getComputerChoice());
-        console.log(`Player Score: ${humanScore}, Computer score: ${computerScore}`);
-    }
+choices.forEach((choice) => {
+    const button = document.createElement("button");
+    button.textContent = choice;
+    buttonnContainer.append(button);
 
-    if (humanScore > computerScore) {
-        console.log(`You win the game! Player Score: ${humanScore}, Computer score: ${computerScore}`);
-    } else if (computerScore > humanScore) {
-        console.log(`You lose the game! Player Score: ${humanScore}, Computer score: ${computerScore}`);
-    } else {
-        console.log(`It's a tie! Player Score: ${humanScore}, Computer score: ${computerScore}`);
-    }
-}
+    button.addEventListener('click', playRound);
+})
 
-playGame();
+
+//playRound(getHumanChoice(), getComputerChoice());
+
+// function playGame() {
+
+//     for (let i = 0; i < 5; i++ ) {
+//         playRound(getHumanChoice(), getComputerChoice());
+//         console.log(`Player Score: ${humanScore}, Computer score: ${computerScore}`);
+//     }
+
+//     if (humanScore > computerScore) {
+//         console.log(`You win the game! Player Score: ${humanScore}, Computer score: ${computerScore}`);
+//     } else if (computerScore > humanScore) {
+//         console.log(`You lose the game! Player Score: ${humanScore}, Computer score: ${computerScore}`);
+//     } else {
+//         console.log(`It's a tie! Player Score: ${humanScore}, Computer score: ${computerScore}`);
+//     }
+// }
+
+// playGame();
