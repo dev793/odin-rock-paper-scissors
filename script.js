@@ -1,6 +1,8 @@
 let humanScore = 0;
 let computerScore = 0;
 let choices = ["rock", "paper", "scissors"];
+const outcome = document.querySelector("#outcome");
+const score = document.querySelector("#score");
 
 function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
@@ -10,10 +12,7 @@ function getHumanChoice() {
     return humanChoice = prompt("Make your choice (rock, paper, scissors):").toLowerCase();
 }
 
-function playRound(event) {
-
-    const humanChoice = event.target.textContent;
-    const computerChoice = getComputerChoice();
+function playRound(humanChoice, computerChoice) {
 
     console.log("Player choice: " + humanChoice);
     console.log("Computer choice: " + computerChoice);
@@ -32,13 +31,18 @@ function playRound(event) {
 
     if (result == "win") {
         humanScore += 1;
-        console.log(`You ${result}, ${humanChoice} beats ${computerChoice}`);
+        outcome.textContent = `You ${result}, ${humanChoice} beats ${computerChoice}`;
     } else if (result == "lose") {
         computerScore += 1;
-        console.log(`You ${result}, ${computerChoice} beats ${humanChoice}`);
+        outcome.textContent = `You ${result}, ${computerChoice} beats ${humanChoice}`;
     } else {
-        console.log(`You ${result}, both players chose ${humanChoice}`);
+        outcome.textContent = `You ${result}, both players chose ${humanChoice}`;
     }
+}
+
+function buttonPress(event) {
+    let humanChoice = event.target.textContent;
+    playRound(humanChoice, getComputerChoice());
 }
 
 const buttonnContainer = document.querySelector("#buttons");
@@ -48,7 +52,7 @@ choices.forEach((choice) => {
     button.textContent = choice;
     buttonnContainer.append(button);
 
-    button.addEventListener('click', playRound);
+    button.addEventListener('click', buttonPress);
 })
 
 
