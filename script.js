@@ -1,6 +1,7 @@
 let humanScore = 0;
 let computerScore = 0;
 let choices = ["rock", "paper", "scissors"];
+const results = document.querySelector("#results")
 const outcome = document.querySelector("#outcome");
 const score = document.querySelector("#score");
 
@@ -37,6 +38,21 @@ function playRound(humanChoice, computerChoice) {
         outcome.textContent = `You ${result}, ${computerChoice} beats ${humanChoice}`;
     } else {
         outcome.textContent = `You ${result}, both players chose ${humanChoice}`;
+    }
+
+    displayScore();
+    checkWinner();
+}
+
+function displayScore() {
+    score.textContent = `Player Score: ${humanScore}, Computer score: ${computerScore}`;
+}
+
+function checkWinner() {
+    if (humanScore == 5 || computerScore == 5) {
+        const finalResult = document.createElement("div")
+        finalResult.textContent = (humanScore == 5) ? "You Win!" : "You Lose!";
+        results.append(finalResult);
     }
 }
 
